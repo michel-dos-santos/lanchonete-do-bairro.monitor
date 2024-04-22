@@ -34,6 +34,6 @@ public class ItauController extends ConsumerControllerBase {
     public void updateBillingByItau(@RequestBody @Valid ItauRequestDTO itauRequestDTO) throws APIException {
         logRepository.info(ItauController.class, LogCode.LogCodeInfo._0034);
 
-        updateBillingBy(itauRequestDTO.getStatusPaymentType(), itauRequestDTO.getBillingOrderId());
+        updateBillingBy(itauRequestDTO.getStatusPaymentType(), itauRequestDTO.getOrderId());
     }
 }

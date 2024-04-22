@@ -31,18 +31,18 @@ public class PostgresDBBillingRepository implements BillingRepository {
     }
 
     @Override
-    public Billing updateStatusPaymentType(UUID billingOrderId, StatusPaymentType status) {
-        Billing billing = findByBillingOrderId(billingOrderId);
+    public Billing updateStatusPaymentType(UUID orderId, StatusPaymentType status) {
+        Billing billing = findByOrderId(orderId);
         billing.setStatus(status);
         return save(billing);
     }
 
     @Override
     @Transactional
-    public Billing findByBillingOrderId(UUID billingOrderId) {
-        Optional<BillingEntity> billingEntityOptional = billingRepository.findByBillingOrderId(billingOrderId);
+    public Billing findByOrderId(UUID orderId) {
+        Optional<BillingEntity> billingEntityOptional = billingRepository.findByOrderId(orderId);
         if (billingEntityOptional.isEmpty()) {
-            throw new BillingNotFoundException("billingOrderId", null, billingOrderId.toString(), null);
+            throw new BillingNotFoundException("orderId", null, orderId.toString(), null);
         }
         return modelMapper.map(billingEntityOptional.get(), Billing.class);
     }

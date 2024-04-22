@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ItauRequestDTO extends RequestConsumerDTO {
 
-    private UUID billingOrderId;
+    private UUID orderId;
     private BigDecimal totalPrice;
 
 }

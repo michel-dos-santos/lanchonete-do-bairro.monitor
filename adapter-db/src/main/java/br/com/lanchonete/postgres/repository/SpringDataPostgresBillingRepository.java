@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public interface SpringDataPostgresBillingRepository extends JpaRepository<BillingEntity, UUID> {
 
-    Optional<BillingEntity> findByBillingOrderId(UUID billingOrderId);
+    Optional<BillingEntity> findByOrderId(UUID orderId);
 
 }

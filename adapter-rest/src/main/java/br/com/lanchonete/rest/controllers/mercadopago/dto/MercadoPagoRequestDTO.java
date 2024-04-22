@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class MercadoPagoRequestDTO extends RequestConsumerDTO {
 
-    private UUID billingOrderId;
+    private UUID orderId;
     private BigDecimal totalPrice;
 
 }

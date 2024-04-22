@@ -34,6 +34,6 @@ public class MercadoPagoController extends ConsumerControllerBase {
     public void updateBillingByMercadoPago(@RequestBody @Valid MercadoPagoRequestDTO mercadoPagoRequestDTO) throws APIException {
         logRepository.info(MercadoPagoController.class, LogCode.LogCodeInfo._0037);
 
-        updateBillingBy(mercadoPagoRequestDTO.getStatusPaymentType(), mercadoPagoRequestDTO.getBillingOrderId());
+        updateBillingBy(mercadoPagoRequestDTO.getStatusPaymentType(), mercadoPagoRequestDTO.getOrderId());
     }
 }

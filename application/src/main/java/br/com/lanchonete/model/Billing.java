@@ -9,7 +9,7 @@ public class Billing {
     private UUID id;
     private Date createdAt;
     private Date updatedAt;
-    private UUID billingOrderId;
+    private UUID orderId;
     private BigDecimal totalPrice;
     private StatusPaymentType status;
     private BillingFormType billingFormType;
@@ -38,12 +38,12 @@ public class Billing {
         this.updatedAt = updatedAt;
     }
 
-    public UUID getBillingOrderId() {
-        return billingOrderId;
+    public UUID getOrderId() {
+        return orderId;
     }
 
-    public void setBillingOrderId(UUID billingOrderId) {
-        this.billingOrderId = billingOrderId;
+    public void setOrderId(UUID orderId) {
+        this.orderId = orderId;
     }
 
     public BigDecimal getTotalPrice() {

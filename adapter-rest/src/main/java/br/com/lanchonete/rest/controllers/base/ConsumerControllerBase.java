@@ -35,10 +35,10 @@ public abstract class ConsumerControllerBase {
     @Operation(summary = "Persiste os dados do pagamento do pedido")
     @Counted(value = "execution.count.updateBillingBy")
     @Timed(value = "execution.time.updateBillingBy", longTask = true)
-    public void updateBillingBy(@RequestBody @Valid StatusPaymentType statusPaymentType, UUID billingOrderId) throws APIException {
+    public void updateBillingBy(@RequestBody @Valid StatusPaymentType statusPaymentType, UUID orderId) throws APIException {
         try {
             br.com.lanchonete.model.StatusPaymentType status = br.com.lanchonete.model.StatusPaymentType.get(statusPaymentType.name());
-            updateBillingByHubUsecase.updateStatusPaymentType(status, billingOrderId);
+            updateBillingByHubUsecase.updateStatusPaymentType(status, orderId);
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }

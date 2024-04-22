@@ -30,7 +30,7 @@ public class BillingEntity {
     @LastModifiedDate
     private Date updatedAt;
     @Column(columnDefinition = "uuid")
-    private UUID billingOrderId;
+    private UUID orderId;
     @Column(length = 14, scale = 2)
     private BigDecimal totalPrice;
     @Enumerated(EnumType.STRING)

@@ -6,6 +6,6 @@ import java.util.UUID;
 
 public interface NotifyOrderRepository {
 
-    void sendNotification(StatusPaymentType statusPaymentType, UUID billingOrderId);
+    void sendNotification(StatusPaymentType statusPaymentType, UUID orderId);
 
 }

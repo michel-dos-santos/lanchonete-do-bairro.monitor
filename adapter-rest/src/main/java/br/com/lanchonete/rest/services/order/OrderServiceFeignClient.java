@@ -10,7 +10,7 @@ import java.util.UUID;
 @FeignClient(value = "orderServiceFeignClient", url = "${api.order.url}", fallbackFactory = OrderServiceFallback.class)
 public interface OrderServiceFeignClient {
 
-    @PutMapping(value = "/{billingOrderId}/status-payment/{status}")
-    void billing(@PathVariable UUID billingOrderId, @PathVariable StatusPaymentType status);
+    @PutMapping(value = "/{orderId}/status-payment/{status}")
+    void billing(@PathVariable UUID orderId, @PathVariable StatusPaymentType status);
 
 }

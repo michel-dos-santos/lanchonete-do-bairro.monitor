@@ -13,6 +13,6 @@ public interface BillingRepository {
 
     Billing findById(UUID id);
 
-    Billing findByBillingOrderId(UUID billingOrderId);
+    Billing findByOrderId(UUID orderId);
 
 }
