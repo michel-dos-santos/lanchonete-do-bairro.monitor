@@ -1,0 +1,53 @@
+version: '3.3'
+
+networks:
+  commons-app:
+    driver: bridge
+
+services:
+  mongo-db-payments:
+    image: mongo
+    restart: always
+    container_name: mongo-db-payments
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./data/mongodb:/data/db
+    networks:
+      - commons-app
+  mongo-express:
+    image: mongo-express
+    restart: always
+    container_name: mongo-express-orders
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo-db-payments:27017/
+      ME_CONFIG_BASICAUTH: false
+    networks:
+      - commons-app
+  adapter-rest-payments:
+    build:
+      context: adapter-db
+      dockerfile: adapter-rest/Dockerfile
+    restart: always
+    container_name: adapter-rest-orders
+    environment:
+      - DB_URL=jdbc:mongodb://mongo-db-payments:27017/
+      - DB_USER=root
+      - DB_PASSWORD=example
+    ports:
+      - "8052:8052"
+    networks:
+      - commons-app
+    depends_on:
+      - mongo-db-payments
+
+volumes:
+  data:
+    external: true

@@ -1,4 +1,4 @@
-package br.com.lanchonete.postgres.entity;
+package br.com.lanchonete.mongo.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,15 +15,12 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "tb_billing")
-@EntityListeners(AuditingEntityListener.class)
+@Document
 public class BillingEntity {
 
     @Id
     @GeneratedValue
-    @Column(columnDefinition = "uuid")
-    private UUID id;
+    private String id;
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private Date createdAt;

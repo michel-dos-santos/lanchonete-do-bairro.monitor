@@ -1,4 +1,4 @@
-package br.com.lanchonete.postgres.entity;
+package br.com.lanchonete.mongo.entity;
 
 import java.util.Arrays;
 

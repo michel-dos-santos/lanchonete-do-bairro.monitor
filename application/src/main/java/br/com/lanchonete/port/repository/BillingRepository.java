@@ -11,8 +11,6 @@ public interface BillingRepository {
 
     Billing updateStatusPaymentType(UUID id, StatusPaymentType status);
 
-    Billing findById(UUID id);
-
     Billing findByOrderId(UUID orderId);
 
 }
