@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.UUID;
 
-@FeignClient(value = "orderServiceFeignClient", url = "${api.order.url}", fallbackFactory = OrderServiceFallback.class)
+@FeignClient(value = "orderServiceFeignClient", url = "${api.orders.url}", fallbackFactory = OrderServiceFallback.class)
 public interface OrderServiceFeignClient {
 
     @PutMapping(value = "/{orderId}/status-payment/{status}")
