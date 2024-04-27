@@ -10,43 +10,48 @@ services:
     restart: always
     container_name: mongo-db-payments
     ports:
-      - 27017:27017
+      - 27018:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER_PAYMENTS}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD_PAYMENTS}
     volumes:
       - ./data/mongodb:/data/db
     networks:
       - commons-app
-  mongo-express:
+  mongo-express-payments:
     image: mongo-express
     restart: always
-    container_name: mongo-express-orders
+    container_name: mongo-express-payments
     ports:
-      - 8081:8081
+      - 8082:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo-db-payments:27017/
-      ME_CONFIG_BASICAUTH: false
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${DB_USER_PAYMENTS}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${DB_PASSWORD_PAYMENTS}
+      - ME_CONFIG_MONGODB_URL=mongodb://${DB_USER_PAYMENTS}:${DB_PASSWORD_PAYMENTS}@mongo-db-payments:27017/
+      - ME_CONFIG_BASICAUTH=false
     networks:
       - commons-app
   adapter-rest-payments:
     build:
-      context: adapter-db
+      context: .
       dockerfile: adapter-rest/Dockerfile
     restart: always
-    container_name: adapter-rest-orders
+    container_name: adapter-rest-payments
     environment:
-      - DB_URL=jdbc:mongodb://mongo-db-payments:27017/
-      - DB_USER=root
-      - DB_PASSWORD=example
+      - DB_HOST=${DB_HOST_PAYMENTS}
+      - DB_PORT=${DB_PORT_PAYMENTS}
+      - DB_NAME=${DB_DATABASE_PAYMENTS}
+      - DB_USER=${DB_USER_PAYMENTS}
+      - DB_PASSWORD=${DB_PASSWORD_PAYMENTS}
+      - API_ORDERS_URL=${API_ORDERS_URL}
     ports:
-      - "8052:8052"
+      - "8013:8013"
     networks:
       - commons-app
     depends_on:
       - mongo-db-payments
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
   data:
