@@ -12,8 +12,8 @@ services:
     ports:
       - 27018:27017
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${DB_USER_PAYMENTS}
-      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD_PAYMENTS}
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./data/mongodb:/data/db
     networks:
@@ -25,9 +25,9 @@ services:
     ports:
       - 8082:8081
     environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=${DB_USER_PAYMENTS}
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=${DB_PASSWORD_PAYMENTS}
-      - ME_CONFIG_MONGODB_URL=mongodb://${DB_USER_PAYMENTS}:${DB_PASSWORD_PAYMENTS}@mongo-db-payments:27017/
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${DB_USER}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${DB_PASSWORD}
+      - ME_CONFIG_MONGODB_URL=mongodb://${DB_USER}:${DB_PASSWORD}@mongo-db-payments:27017/
       - ME_CONFIG_BASICAUTH=false
     networks:
       - commons-app
@@ -38,11 +38,11 @@ services:
     restart: always
     container_name: adapter-rest-payments
     environment:
-      - DB_HOST=${DB_HOST_PAYMENTS}
-      - DB_PORT=${DB_PORT_PAYMENTS}
-      - DB_NAME=${DB_DATABASE_PAYMENTS}
-      - DB_USER=${DB_USER_PAYMENTS}
-      - DB_PASSWORD=${DB_PASSWORD_PAYMENTS}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_DATABASE}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
       - API_ORDERS_URL=${API_ORDERS_URL}
     ports:
       - "8013:8013"
