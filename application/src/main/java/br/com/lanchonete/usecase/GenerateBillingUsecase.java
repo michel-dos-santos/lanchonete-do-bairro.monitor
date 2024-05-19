@@ -19,10 +19,10 @@ public class GenerateBillingUsecase implements GenerateBilling {
 
     @Override
     public Billing generate(Billing billing) {
-        logRepository.info(GenerateBillingUsecase.class, LogCode.LogCodeInfo._0024);
+        logRepository.info(GenerateBillingUsecase.class, LogCode.LogCodeInfo._0002);
         billing.setStatus(StatusPaymentType.PENDING);
         billing = billingRepository.save(billing);
-        logRepository.info(GenerateBillingUsecase.class, LogCode.LogCodeInfo._0025);
+        logRepository.info(GenerateBillingUsecase.class, LogCode.LogCodeInfo._0003);
         return billing;
     }
 }

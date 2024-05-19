@@ -32,7 +32,7 @@ public class ItauController extends ConsumerControllerBase {
     @Timed(value = "execution.time.updateBillingByItau", longTask = true)
     @PutMapping
     public void updateBillingByItau(@RequestBody @Valid ItauRequestDTO itauRequestDTO) throws APIException {
-        logRepository.info(ItauController.class, LogCode.LogCodeInfo._0034);
+        logRepository.info(ItauController.class, LogCode.LogCodeInfo._0006);
 
         updateBillingBy(itauRequestDTO.getStatusPaymentType(), itauRequestDTO.getOrderId());
     }

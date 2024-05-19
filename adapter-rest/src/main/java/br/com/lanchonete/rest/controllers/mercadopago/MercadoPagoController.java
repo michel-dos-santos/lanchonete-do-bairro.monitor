@@ -32,7 +32,7 @@ public class MercadoPagoController extends ConsumerControllerBase {
     @Timed(value = "execution.time.updateBillingByMercadoPago", longTask = true)
     @PutMapping
     public void updateBillingByMercadoPago(@RequestBody @Valid MercadoPagoRequestDTO mercadoPagoRequestDTO) throws APIException {
-        logRepository.info(MercadoPagoController.class, LogCode.LogCodeInfo._0037);
+        logRepository.info(MercadoPagoController.class, LogCode.LogCodeInfo._0009);
 
         updateBillingBy(mercadoPagoRequestDTO.getStatusPaymentType(), mercadoPagoRequestDTO.getOrderId());
     }

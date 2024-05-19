@@ -21,9 +21,9 @@ public class NotifyOrder implements NotifyOrderRepository {
     private LogRepository logRepository;
 
     public void sendNotification(StatusPaymentType statusPaymentType, UUID orderId) {
-        logRepository.info(NotifyOrder.class, LogCode.LogCodeInfo._0032);
+        logRepository.info(NotifyOrder.class, LogCode.LogCodeInfo._0004);
         serviceFeignClient.billing(orderId, statusPaymentType);
-        logRepository.info(NotifyOrder.class, LogCode.LogCodeInfo._0033);
+        logRepository.info(NotifyOrder.class, LogCode.LogCodeInfo._0005);
     }
 
 }

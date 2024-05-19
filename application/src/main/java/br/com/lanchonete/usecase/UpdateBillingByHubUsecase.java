@@ -23,9 +23,9 @@ public class UpdateBillingByHubUsecase implements UpdateBillingByHub {
 
     @Override
     public void updateStatusPaymentType(StatusPaymentType statusPaymentType, UUID orderId) {
-        logRepository.info(UpdateBillingByHubUsecase.class, LogCode.LogCodeInfo._0035);
+        logRepository.info(UpdateBillingByHubUsecase.class, LogCode.LogCodeInfo._0007);
         billingRepository.updateStatusPaymentType(orderId, statusPaymentType);
         notifyOrderRepository.sendNotification(statusPaymentType, orderId);
-        logRepository.info(UpdateBillingByHubUsecase.class, LogCode.LogCodeInfo._0036);
+        logRepository.info(UpdateBillingByHubUsecase.class, LogCode.LogCodeInfo._0008);
     }
 }
